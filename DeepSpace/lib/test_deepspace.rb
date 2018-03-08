@@ -10,7 +10,7 @@ require_relative 'supplies_package'
 require_relative 'shield_booster'
 require_relative 'weapon'
 require_relative 'dice'
-
+require_relative 'game_character'
 module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
       
@@ -64,7 +64,7 @@ module Deepspace
 
        def test_dice
          @dice_object = Dice.new
-         n = [0,0,0]
+         n = [0,0,0,0]
          
          for i in 1..1000
            if @dice_object.initWithNHangars == 0
@@ -76,20 +76,24 @@ module Deepspace
            if @dice_object.initWithNShields == 0
              n[2]=n[2]+1.0
            end
+           if @dice_object.firstShot == GameCharacter::SPACESTATION
+             n[3]=n[3]+1.0
+           end
          end
          
          p1=n[0]/1000.0
          p2=n[1]/1000.0
          p3=n[2]/1000.0
+         p4=n[3]/1000.0
          
          assert 0.2 < p1 && p1 < 0.3, "Probabilidad no adecuada P1"
          assert 0.28 < p2 && p2 < 0.38, "Probabilidad no adecuada P2"
          assert 0.2 < p3 && p3 < 0.3, "Probabilidad no adecuada P3"
+         assert 0.45 < p4 && p4 < 0.55, "Probabilidad no adecuada P4"
          
-         
-         
-       
-
+         #Probamos el método whoStarts.
+         x = @dice_object.whoStarts(10)
+         assert 0 <= x && x < 10, "Fallo en la eleccion de jugador (whoStarts)"
        end
       
     end

@@ -40,7 +40,7 @@ module Deepspace
       end
       
       def whoStarts(nPlayers)
-        return @generator.rand(NPlayers)
+        return @generator.rand(nPlayers)
       end
       
       def firstShot
@@ -60,25 +60,4 @@ module Deepspace
       end
       
     end
-    
-         @dice_object = Dice.new
-         n = [0,0,0]
-         
-         for i in 1..100000
-           if @dice_object.initWithNHangars == 0
-             n[0]=n[0]+1
-           end
-           if @dice_object.initWithNWeapons == 1
-             n[1]=n[1]+1
-           end
-           if @dice_object.initWithNShields == 0
-             n[2]=n[2]+1
-           end
-         end
-         
-         p1=n[0]/100000.0
-         p2=n[1]/100000.0
-         p3=n[2]/100000.0
-         
-         print p1, " ", p2, " ", p3
 end
