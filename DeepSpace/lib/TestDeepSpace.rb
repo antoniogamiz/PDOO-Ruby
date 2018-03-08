@@ -4,13 +4,13 @@
 
 require 'test/unit'
 
-require_relative 'loot'
-require_relative 'weapon_type'
-require_relative 'supplies_package'
-require_relative 'shield_booster'
-require_relative 'weapon'
-require_relative 'dice'
-require_relative 'game_character'
+require_relative 'Loot'
+require_relative 'WeaponType'
+require_relative 'SuppliesPackage'
+require_relative 'ShieldBooster'
+require_relative 'Weapon'
+require_relative 'Dice'
+require_relative 'GameCharacter'
 module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
       
