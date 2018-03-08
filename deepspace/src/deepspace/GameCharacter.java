@@ -10,6 +10,6 @@ package deepspace;
  * @author antonio
  */
 public enum GameCharacter {
-    ENEMYSTARTSHIP,
+    ENEMYSTARSHIP,
     SPACESTATION
 }
