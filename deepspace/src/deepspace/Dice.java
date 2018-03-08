@@ -60,10 +60,10 @@ public class Dice {
         if( generator.nextFloat() < FIRSTSHOTPROB )
             return GameCharacter.SPACESTATION;
         else
-            return GameCharacter.ENEMYSTARTSHIP;
+            return GameCharacter.ENEMYSTARSHIP;
     }
     
-    boolean spaceStationMovas(float speed){
+    boolean spaceStationMoves(float speed){
         if( generator.nextFloat() < speed )
             return true;
         else
