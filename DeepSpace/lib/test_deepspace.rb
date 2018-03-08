@@ -68,23 +68,23 @@ module Deepspace
          
          for i in 1..1000
            if @dice_object.initWithNHangars == 0
-             n[0]=n[0]+1
+             n[0]=n[0]+1.0
            end
            if @dice_object.initWithNWeapons == 1
-             n[1]=n[1]+1
+             n[1]=n[1]+1.0
            end
            if @dice_object.initWithNShields == 0
-             n[2]=n[2]+1
+             n[2]=n[2]+1.0
            end
          end
          
-         p1=n[0]/1000
-         p2=n[1]/1000
-         p3=n[2]/1000
+         p1=n[0]/1000.0
+         p2=n[1]/1000.0
+         p3=n[2]/1000.0
          
-         assert p1 == 0
-         assert p2 < 0.25
-         assert p3 < 0.33
+         assert 0.2 < p1 && p1 < 0.3, "Probabilidad no adecuada P1"
+         assert 0.28 < p2 && p2 < 0.38, "Probabilidad no adecuada P2"
+         assert 0.2 < p3 && p3 < 0.3, "Probabilidad no adecuada P3"
          
          
          
