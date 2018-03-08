@@ -14,17 +14,9 @@ module Deepspace
         Weapon.new(w.name, w.type, w.uses)
       end
       
-      def name
-        @name
-      end
-      
-      def type
-        @type
-      end
-      
-      def uses
-        @uses
-      end
+      attr_reader :name
+      attr_reader :type
+      attr_reader :uses
       
       def power
         @type.power

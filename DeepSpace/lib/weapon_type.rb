@@ -4,14 +4,14 @@
 
 module Deepspace
   module WeaponType
+    
     class Type
       def initialize(power)
         @power=power
       end
 
-      def power
-        @power  
-      end
+    attr_reader :power
+    
     end
 
     LASER=Type.new(2.0)

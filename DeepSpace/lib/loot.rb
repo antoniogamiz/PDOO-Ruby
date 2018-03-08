@@ -11,21 +11,10 @@ module Deepspace
       @nMedals=nMedals
     end 
      
-    def nSupplies
-      @nSupplies
-    end
-
-    def nWeapons
-      @nWeapons
-    end
+    attr_reader :nSupplies
+    attr_reader :nWeapons
+    attr_reader :nHangars
+    attr_reader :nMedals
     
-    def nHangars
-      @nHangars
-    end     
-    
-    def nMedals
-      @nMedals
-    end   
-
-    end
+  end
 end

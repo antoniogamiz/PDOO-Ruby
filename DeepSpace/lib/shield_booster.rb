@@ -13,14 +13,9 @@ module Deepspace
     def newCopy(s)
       ShieldBooster(s.name, s.boost, s.uses)
     end
-    
-    def boost
-      @boost
-    end
-    
-    def uses
-      @uses
-    end
+
+    attr_reader :boost
+    attr_reader :uses
     
     def useIt
       if @uses > 0

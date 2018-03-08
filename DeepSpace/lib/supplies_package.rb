@@ -14,17 +14,9 @@ module Deepspace
       SuppliesPackage.new(s.ammoPower, s.fuelUnits, s.shieldPower)
     end
     
-    def ammoPower
-      @ammoPower
-    end
-    
-    def fuelUnits
-      @fuelUnits
-    end
-    
-    def shieldPower
-      @shieldPower
-    end
+    attr_reader :ammoPower
+    attr_reader :fuelUnits
+    attr_reader :shieldPower
     
   end
 end
