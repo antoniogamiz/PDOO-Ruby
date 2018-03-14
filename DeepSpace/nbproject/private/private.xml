@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/shot_result.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/weapon_type.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/weapon.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/shield_booster.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/dice.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/test_deepspace.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/loot.rb</file>
-            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/supplies_package.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/Loot.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/Dice.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/TestDeepSpace.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/Weapon.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/ShieldBooster.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/SuppliesPackage.rb</file>
+            <file>file:/home/antonio/NetBeansProjects/DeepSpace/lib/WeaponType.rb</file>
         </group>
     </open-files>
 </project-private>
