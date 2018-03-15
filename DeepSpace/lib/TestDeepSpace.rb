@@ -53,7 +53,7 @@ module Deepspace
         assert_equal "boom", @weapon_object.name
         assert_equal WeaponType::PLASMA, @weapon_object.type
         assert_equal 2, @weapon_object.uses
-        copy = @weapon_object.newCopy(@weapon_object)
+        copy = Weapon.newCopy(@weapon_object)
         assert_equal "boom", copy.name
         assert_equal WeaponType::PLASMA, copy.type
         assert_equal 2, copy.uses
