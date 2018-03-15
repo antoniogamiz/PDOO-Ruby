@@ -10,8 +10,8 @@ module Deepspace
       @uses=uses
     end
     
-    def newCopy(s)
-      ShieldBooster(s.name, s.boost, s.uses)
+    def self.newCopy(s)
+     new(s.name, s.boost, s.uses)
     end
 
     attr_reader :boost

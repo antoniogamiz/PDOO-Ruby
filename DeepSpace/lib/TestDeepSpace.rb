@@ -15,11 +15,16 @@ module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
       
       def test_loot
-        @loot_object = Loot.new(1,2,3, 4)
+        @loot_object = Loot.new(1,2,3, 4, 5)
         assert_equal 1, @loot_object.nSupplies
         assert_equal 2, @loot_object.nWeapons
-        assert_equal 3, @loot_object.nHangars
-        assert_equal 4, @loot_object.nMedals
+        assert_equal 3, @loot_object.nShields
+        assert_equal 4, @loot_object.nHangars
+        assert_equal 5, @loot_object.nMedals
+        
+        @loot_object.getUIversion
+        @loot_object.to_s
+        
       end
       
       def test_shield_booster
@@ -60,6 +65,8 @@ module Deepspace
         assert_equal WeaponType::PLASMA.power, copy.useIt
         copy.useIt
         assert_equal 1.0, copy.useIt
+        
+        @weapon_object.getUIversion
       end
 
        def test_dice

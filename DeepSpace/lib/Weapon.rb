@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative 'WeaponToUI'
+
 module Deepspace
     class Weapon
       def initialize(name, type, uses)
@@ -31,5 +33,10 @@ module Deepspace
         end
         
       end
+      
+      def getUIversion()
+        WeaponToUI.new(self)
+      end
+      
     end
 end
