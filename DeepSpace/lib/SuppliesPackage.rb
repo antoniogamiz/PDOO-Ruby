@@ -10,13 +10,10 @@ module Deepspace
       @shieldPower=shieldPower
     end
     
-    def newCopy(s)
-      SuppliesPackage.new(s.ammoPower, s.fuelUnits, s.shieldPower)
+    def self.newCopy(s)
+      new(s.ammoPower, s.fuelUnits, s.shieldPower)
     end
     
-    attr_reader :ammoPower
-    attr_reader :fuelUnits
-    attr_reader :shieldPower
-    
+    attr_reader :ammoPower, :fuelUnits, :shieldPower
   end
 end

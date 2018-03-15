@@ -2,6 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require_relative 'ShieldToUI'
+
 module Deepspace
   class ShieldBooster
     def initialize(name, boost, uses)
@@ -14,16 +16,23 @@ module Deepspace
      new(s.name, s.boost, s.uses)
     end
 
-    attr_reader :boost
-    attr_reader :uses
+    attr_reader :boost, :uses
     
     def useIt
       if @uses > 0
         @uses-=1
-        return @boost
+        @boost
       else
-        return 1.0
+        1.0
       end
+    end
+    
+    def getUIversion
+      ShieldToUI.new(self)
+    end
+    
+    def to_s
+      "Name: #{@name} Boost: #{@boost} Uses: #{@uses}"
     end
     
   end

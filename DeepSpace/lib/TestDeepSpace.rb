@@ -34,6 +34,9 @@ module Deepspace
           @shield_booster_object.useIt
           assert_equal 2, @shield_booster_object.uses
           assert_equal 1, @shield_booster_object.useIt
+          
+        @shield_booster_object.getUIversion
+        @shield_booster_object.to_s
       end
       
       def test_weapon_type
@@ -47,7 +50,7 @@ module Deepspace
         assert_equal 1, @supplies_package_object.ammoPower
         assert_equal 2, @supplies_package_object.fuelUnits
         assert_equal 3, @supplies_package_object.shieldPower
-        copy = @supplies_package_object.newCopy(@supplies_package_object)
+        copy = SuppliesPackage.newCopy(@supplies_package_object)
         assert_equal 1, copy.ammoPower
         assert_equal 2, copy.fuelUnits
         assert_equal 3, copy.shieldPower
@@ -67,10 +70,12 @@ module Deepspace
         assert_equal 1.0, copy.useIt
         
         @weapon_object.getUIversion
+        @weapon_object.to_s
       end
 
        def test_dice
          @dice_object = Dice.new
+         @dice_object.to_s
          n = [0,0,0,0]
          
          for i in 1..1000

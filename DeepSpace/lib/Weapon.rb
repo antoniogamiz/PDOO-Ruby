@@ -16,9 +16,7 @@ module Deepspace
         new(w.name, w.type, w.uses)
       end
       
-      attr_reader :name
-      attr_reader :type
-      attr_reader :uses
+      attr_reader :name, :type, :uses
       
       def power
         @type.power
@@ -27,9 +25,9 @@ module Deepspace
       def useIt
         if @uses > 0
           @uses-=1
-          return power
+          power
         else
-          return 1.0
+          1.0
         end
         
       end
@@ -38,5 +36,9 @@ module Deepspace
         WeaponToUI.new(self)
       end
       
+      def to_s
+        "Name: #{@name} Type(power): #{@type.power} Uses: #{@uses}"
+      end
+
     end
 end

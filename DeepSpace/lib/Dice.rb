@@ -12,50 +12,54 @@ module Deepspace
         @generator=Random.new
       end
       
+      def to_s
+        "NHANGARSPROB: @#{@NHANGARSPROB} NSHIELDSPROB: #{@NSHIELDSPROB} NWEAPONSPROB: #{@NWEAPONSPROB} FIRSTSHOTPROB: #{@FIRSTSHOTPROB}"
+      end
+      
       def initWithNHangars
         if @generator.rand < @NHANGARSPROB
-          return 0
+          0
         else
-          return 1
+          1
         end
       end
       
       def initWithNWeapons
         p = @generator.rand
         if p < @NWEAPONSPROB
-          return 1
+          1
         elsif @NWEAPONSPROB <= p and p < @NWEAPONSPROB
-          return 2
+          2
         else
-          return 3
+          3
         end
       end
       
       def initWithNShields
         if @generator.rand < @NSHIELDSPROB
-          return 0
+          0
         else
-          return 1
+          1
         end
       end
       
       def whoStarts(nPlayers)
-        return @generator.rand(nPlayers)
+        @generator.rand(nPlayers)
       end
       
       def firstShot
         if @generator.rand < @FIRSTSHOTPROB
-          return GameCharacter::SPACESTATION
+          GameCharacter::SPACESTATION
         else
-          return GameCharacter::ENEMYSTARTSHIP
+          GameCharacter::ENEMYSTARTSHIP
         end
       end
       
       def spaceStationMoves(speed)
         if @generator.rand < speed
-          return true
+          true
         else
-          return false
+          false
         end
       end
       
