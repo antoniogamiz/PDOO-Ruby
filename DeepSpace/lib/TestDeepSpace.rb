@@ -107,6 +107,6 @@ module Deepspace
          x = @dice_object.whoStarts(10)
          assert 0 <= x && x < 10, "Fallo en la eleccion de jugador (whoStarts)"
        end
-      
+       
     end
 end
