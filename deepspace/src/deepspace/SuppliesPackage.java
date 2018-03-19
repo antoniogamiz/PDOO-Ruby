@@ -24,18 +24,19 @@ public class SuppliesPackage {
     SuppliesPackage(SuppliesPackage s){
         this(s.getAmmoPower(), s.getFuelUnits(), s.getShieldPower());
     }
-    
-    public float getAmmoPower(){
+
+    public float getAmmoPower() {
         return ammoPower;
     }
 
-    public float getFuelUnits(){
+    public float getFuelUnits() {
         return fuelUnits;
     }
 
-    public float getShieldPower(){
+    public float getShieldPower() {
         return shieldPower;
     }
+    
 
 
 }
