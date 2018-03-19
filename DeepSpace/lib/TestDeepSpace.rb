@@ -11,6 +11,7 @@ require_relative 'ShieldBooster'
 require_relative 'Weapon'
 require_relative 'Dice'
 require_relative 'GameCharacter'
+require_relative 'Hangar'
 module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
       
@@ -106,6 +107,29 @@ module Deepspace
          #Probamos el método whoStarts.
          x = @dice_object.whoStarts(10)
          assert 0 <= x && x < 10, "Fallo en la eleccion de jugador (whoStarts)"
+       end
+       
+       def test_hangar
+         @hangar=Hangar.new(10)
+         w1 = Weapon.new("boom1", WeaponType::PLASMA, 2)
+         w2 = Weapon.new("boom2", WeaponType::PLASMA, 2)
+         s1 = ShieldBooster.new("pam1", 1, 3)
+         s2 = ShieldBooster.new("pam2", 1, 3)
+         
+         assert !@hangar.removeShieldBooster(3), "Fallo al eliminar elemento"
+         assert !@hangar.removeWeapon(4), "Fallo al eliminar elemento"
+       
+         assert @hangar.addWeapon(w1)
+         assert @hangar.addShieldBooster(s1)
+         
+         assert_kind_of(Weapon, @hangar.removeWeapon(0))
+         assert_kind_of(ShieldBooster, @hangar.removeShieldBooster(0))
+         assert_kind_of(Array, @hangar.weapons)
+         assert_kind_of(Array, @hangar.shieldBoosters)
+
+         @hangar.getUIversion
+         
+         assert 10 == @hangar.maxElements
        end
        
     end

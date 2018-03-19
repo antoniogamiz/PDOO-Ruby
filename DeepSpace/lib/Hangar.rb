@@ -2,7 +2,6 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-#No meto el modulo Weapon ya que no se crean objetos Weapons.
 require_relative 'HangarToUI'
 
 module Deepspace
@@ -35,7 +34,7 @@ module Deepspace
 
     def addShieldBooster(s)
       if spaceAvailable
-        @shieldBooster.push s
+        @shieldBoosters.push s
         true
       else
         false
@@ -43,8 +42,8 @@ module Deepspace
     end
 
     def removeWeapon(w)
-      if @weapons.lenght > w
-        weapon = @weapons[w]
+      if @weapons.length > w
+        weapon =  @weapons[w]
         @weapons.pop w
         weapon
       else
@@ -53,9 +52,9 @@ module Deepspace
     end
 
     def removeShieldBooster(s)
-      if @shieldBooster.lenght > s
-        weapon = @wshieldBooster[s]
-        @shieldBooster.pop s
+      if @shieldBoosters.length > s
+        weapon = @shieldBoosters[s]
+        @shieldBoosters.pop s
         weapon
       else
         return nil
