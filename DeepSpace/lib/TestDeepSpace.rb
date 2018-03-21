@@ -147,8 +147,23 @@ module Deepspace
         
         ws2=[Deepspace::WeaponType::LASER, Deepspace::WeaponType::LASER]
         
-        d2 = Deepspace::Damage.newNumericWeapons(ws2, 1)
+        d2 = Deepspace::Damage.newSpecificWeapons(ws2, 1)
         
+        ws1=[w1, w2, w3, w4]
+        ss1=[s1, s1]
+        
+        adj1=d1.adjust(ws1, ss1)
+        assert (adj1.nWeapons == 2 && adj1.nShields == 2), "Weapons: #{adj1.nWeapons} #{adj1.nShields}"
+        
+        adj2 = d2.adjust(ws1, ss1)
+        assert [Deepspace::WeaponType::LASER,Deepspace::WeaponType::LASER] == adj2.weapons, "Weapons: #{adj2.weapons}"
+        
+        adj2.discardWeapon(w1)
+        assert [] == adj2.weapons, "#{adj2.weapons}"
+        assert 0 == adj2.discardShieldBooster, "#{adj2.nShields}"
+        assert false == adj2.hasNoEffect
+        
+        assert 1 == adj1.discardWeapon(w1)
       
       end
     end

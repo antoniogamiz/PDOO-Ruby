@@ -9,9 +9,8 @@ module Deepspace
   
 class Damage
   def initialize(w, s, wl)
-    @nShields=w
-    @nWeapons=s
-    
+    @nWeapons=w
+    @nShields=s    
     if wl == nil
       @weapons=nil
     else
@@ -43,7 +42,7 @@ class Damage
       Damage.newNumericWeapons([@nWeapons,w.length].min, [@nShields,s.length].min)      
     else
       damage_adjust=Damage.newSpecificWeapons(@weapons, [@nShields, s.length].min)
-      @weapons.each {|x| index=arrayContainsType(damage_adjust.weapons, x); if (index==-1); damage_adjust.weapons.delete(x) end }
+      @weapons.each {|x| index=arrayContainsType(damage_adjust.weapons, x); if index==-1; damage_adjust.weapons.delete(x); end }
       damage_adjust
     end
     
@@ -59,20 +58,13 @@ class Damage
   end
   
   def discardWeapon(w)
-    if @weapons!=nil
-      index=arrayContainsType(@weapons, w.type)
-      if index==-1
-        @nWeapons-=1
-      else
-        @weapons.delete_at(index)
-      end
+    if @weapons != nil #Entonces es específico
+      @weapons.delete(w.type)
     else
-      if @nWeapons > 0
-        @nWeapons-=1
-      else
-        @nWeapons=0
+      if @nWeapons > 0 
+        @nWeapons -= 1
       end
-    end
+    end     
   end
   
   def discardShieldBooster
