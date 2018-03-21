@@ -12,6 +12,8 @@ require_relative 'Weapon'
 require_relative 'Dice'
 require_relative 'GameCharacter'
 require_relative 'Hangar'
+require_relative 'Damage'
+
 module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
       
@@ -131,6 +133,23 @@ module Deepspace
          
          assert 10 == @hangar.maxElements
        end
-       
+      
+      def test_damage
+        w1 = Deepspace::Weapon.new("weapon", Deepspace::WeaponType::LASER, 0)
+        w2 = Deepspace::Weapon.new("weapon2", Deepspace::WeaponType::MISSILE, 1)
+        w3 = Deepspace::Weapon.new("weapon3", Deepspace::WeaponType::PLASMA, 3)
+        w4 = Deepspace::Weapon.new("weapon4", Deepspace::WeaponType::LASER, 2)
+        
+        s1 = Deepspace::ShieldBooster.new("shield1", 5, 6)
+        s2 = Deepspace::ShieldBooster.new("shield2", 3, 0) 
+      
+        d1 = Deepspace::Damage.newNumericWeapons(2,3)
+        
+        ws2=[Deepspace::WeaponType::LASER, Deepspace::WeaponType::LASER]
+        
+        d2 = Deepspace::Damage.newNumericWeapons(ws2, 1)
+        
+      
+      end
     end
 end

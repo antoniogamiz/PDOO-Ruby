@@ -2,4 +2,11 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-puts "Hello World"
+
+require_relative 'WeaponType'
+module Deepspace
+
+a = [WeaponType::LASER, WeaponType::MISSILE, WeaponType::PLASMA]
+a.delete_at(1)
+  print a
+end
