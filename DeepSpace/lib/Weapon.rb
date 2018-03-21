@@ -32,7 +32,7 @@ module Deepspace
         
       end
       
-      def getUIversion()
+      def getUIversion
         WeaponToUI.new(self)
       end
       
