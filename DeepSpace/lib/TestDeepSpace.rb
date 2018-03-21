@@ -11,8 +11,10 @@ require_relative 'ShieldBooster'
 require_relative 'Weapon'
 require_relative 'Dice'
 require_relative 'GameCharacter'
+require_relative 'ShotResult'
 require_relative 'Hangar'
 require_relative 'Damage'
+require_relative 'EnemyStarShip'
 
 module Deepspace
     class TestDeepSpace < Test::Unit::TestCase
@@ -143,19 +145,19 @@ module Deepspace
         s1 = Deepspace::ShieldBooster.new("shield1", 5, 6)
         s2 = Deepspace::ShieldBooster.new("shield2", 3, 0) 
       
-        d1 = Deepspace::Damage.newNumericWeapons(2,3)
+        @d1 = Deepspace::Damage.newNumericWeapons(2,3)
         
         ws2=[Deepspace::WeaponType::LASER, Deepspace::WeaponType::LASER]
         
-        d2 = Deepspace::Damage.newSpecificWeapons(ws2, 1)
+        @d2 = Deepspace::Damage.newSpecificWeapons(ws2, 1)
         
         ws1=[w1, w2, w3, w4]
         ss1=[s1, s1]
         
-        adj1=d1.adjust(ws1, ss1)
+        adj1=@d1.adjust(ws1, ss1)
         assert (adj1.nWeapons == 2 && adj1.nShields == 2), "Weapons: #{adj1.nWeapons} #{adj1.nShields}"
         
-        adj2 = d2.adjust(ws1, ss1)
+        adj2 = @d2.adjust(ws1, ss1)
         assert [Deepspace::WeaponType::LASER,Deepspace::WeaponType::LASER] == adj2.weapons, "Weapons: #{adj2.weapons}"
         
         adj2.discardWeapon(w1)
@@ -164,6 +166,15 @@ module Deepspace
         assert false == adj2.hasNoEffect
         
         assert 1 == adj1.discardWeapon(w1)
+        
+        adj1.getUIversion
+      end
+      
+      def test_enemy_start_ship
+        e1 = Deepspace::EnemyStarShip.new(5,"Flota imperial",4, Deepspace::Loot.new(1,2,3,4,5), @d1)
+        e2 = Deepspace::EnemyStarShip.new(5,"Enemigo",1, Deepspace::Loot.new(1,2,3,4,5), @d2)
+        
+        assert Deepspace::ShotResult::RESIST==e1.receiveShot(2), "#{e1.receiveShot(2)}"
       
       end
     end
