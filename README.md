@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/JJ/p6-algorithm-evolutionary-simple.svg?branch=master)](https://travis-ci.org/JJ/p6-algorithm-evolutionary-simple)
+[![Build Status](https://travis-ci.org/antoniogamiz/PracticasPDOO)](https://travis-ci.org/antoniogamiz/PracticasPDOO)
 # PracticasPDOO
 
 
