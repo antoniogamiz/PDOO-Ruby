@@ -5,7 +5,7 @@ require 'Weapon'
 require 'ShieldBooster'
 
 module Tests
-    class TestDHangarClass < Test::Unit::TestCase
+    class TestHangarClass < Test::Unit::TestCase
 
       def setup
         @hangar=Deepspace::Hangar.new(4)

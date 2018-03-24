@@ -8,7 +8,7 @@ module Tests
       def setup
         @loot=Deepspace::Loot.new(1,2,3,4,5)
       end
-
+      
       def test_nSupplies
         assert_respond_to @loot, :nSupplies, "No existe el getter :nSupplies"
         assert_equal 1, @loot.nSupplies, "Fallo inicializando :nSupplies"
