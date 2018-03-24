@@ -17,18 +17,14 @@ module Deepspace
       end
       
       def initWithNHangars
-        if @generator.rand < @NHANGARSPROB
-          0
-        else
-          1
-        end
+        @generator.rand < @NHANGARSPROB ? 0 : 1
       end
       
       def initWithNWeapons
         p = @generator.rand
         if p < @NWEAPONSPROB
           1
-        elsif @NWEAPONSPROB <= p and p < @NWEAPONSPROB
+        elsif @NWEAPONSPROB <= p and p < 1-@NWEAPONSPROB
           2
         else
           3
@@ -36,11 +32,7 @@ module Deepspace
       end
       
       def initWithNShields
-        if @generator.rand < @NSHIELDSPROB
-          0
-        else
-          1
-        end
+       @generator.rand < @NSHIELDSPROB ? 0 : 1
       end
       
       def whoStarts(nPlayers)
@@ -48,19 +40,11 @@ module Deepspace
       end
       
       def firstShot
-        if @generator.rand < @FIRSTSHOTPROB
-          GameCharacter::SPACESTATION
-        else
-          GameCharacter::ENEMYSTARTSHIP
-        end
+        @generator.rand < @FIRSTSHOTPROB ? GameCharacter::SPACESTATION : GameCharacter::ENEMYSTARTSHIP
       end
       
       def spaceStationMoves(speed)
-        if @generator.rand < speed
-          true
-        else
-          false
-        end
+        @generator.rand < speed
       end
       
     end
