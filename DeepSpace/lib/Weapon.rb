@@ -11,17 +11,17 @@ module Deepspace
         @type=type
         @uses=uses
       end
-      
+
       def self.newCopy(w)
         new(w.name, w.type, w.uses)
       end
-      
+
       attr_reader :name, :type, :uses
-      
+
       def power
         @type.power
       end
-      
+
       def useIt
         if @uses > 0
           @uses-=1
@@ -29,13 +29,13 @@ module Deepspace
         else
           1.0
         end
-        
+
       end
-      
+
       def getUIversion
         WeaponToUI.new(self)
       end
-      
+
       def to_s
         "Name: #{@name} Type(power): #{@type.power} Uses: #{@uses}"
       end

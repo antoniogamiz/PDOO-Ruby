@@ -7,22 +7,22 @@ require_relative 'HangarToUI'
 module Deepspace
 
   class Hangar
-    def initialize(capacity) # Duda 1 con el nombre de los constructores
+    def initialize(capacity)
       @maxElements=capacity
       @weapons = []
       @shieldBoosters = []
     end
-    
+
     def self.newCopy(h)
         new(h.maxElements)
     end
-    
+
     attr_reader :maxElements, :weapons, :shieldBoosters
-    
+
     def getUIversion
       HangarToUI.new(self)
     end
-        
+
     def addWeapon(w)
       if spaceAvailable
         @weapons.push w
@@ -42,34 +42,29 @@ module Deepspace
     end
 
     def removeWeapon(w)
-      if @weapons.length > w
-        weapon =  @weapons[w]
-        @weapons.pop w
-        weapon
+      if @weapons.length > w && w >= 0
+        @weapons.delete_at(w)
       else
         return nil
       end
     end
 
     def removeShieldBooster(s)
-      if @shieldBoosters.length > s
-        weapon = @shieldBoosters[s]
-        @shieldBoosters.pop s
-        weapon
+      if @shieldBoosters.length > s && s >= 0
+        @shieldBoosters.delete_at(s)
       else
         return nil
       end
     end
-    
-    private
-    def spaceAvailable # Duda 2 No se si considerar maxElements por separado o entre los dos.
-      if @weapons.length + @shieldBoosters.length < @maxElements
-        true
-      else
-        false
-      end
+
+    def to_s
     end
-    
+
+    private
+    def spaceAvailable
+      @weapons.length + @shieldBoosters.length < @maxElements
+    end
+
   end
 
 end

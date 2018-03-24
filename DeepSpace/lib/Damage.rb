@@ -38,16 +38,24 @@ class Damage
   end  
   
   def adjust(w, s)
-    if @weapons==nil
-      Damage.newNumericWeapons([@nWeapons,w.length].min, [@nShields,s.length].min)      
-    else
-      damage_adjust=Damage.newSpecificWeapons(@weapons, [@nShields, s.length].min)
-      @weapons.each {|x| index=arrayContainsType(damage_adjust.weapons, x); if index==-1; damage_adjust.weapons.delete(x); end }
-      damage_adjust
+      ns = [s.length, @nShields].min
+      
+      aux = Damage.new(nil, ns, @weapons)
+      copy = Array.new(w)
+      
+      if @weapons != nil
+        @weapons.each {|x|
+          index=arrayContainsType(copy, x)
+
+          if(index==-1)
+            aux.weapons.delete_at(aux.weapons.index(x))
+          else
+            copy.delete_at(index)
+          end
+        }
+      end
+      aux
     end
-    
-  end
-  
   def arrayContainsType(w, t)
     index=w.index(t)
     if index == nil
@@ -58,7 +66,7 @@ class Damage
   end
   
   def discardWeapon(w)
-    if @weapons != nil #Entonces es específico
+    if @weapons != nil
       @weapons.delete(w.type)
     else
       if @nWeapons > 0 

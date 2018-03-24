@@ -13,7 +13,7 @@ module Deepspace
     def self.newCopy(s)
       new(s.ammoPower, s.fuelUnits, s.shieldPower)
     end
-    
+
     attr_reader :ammoPower, :fuelUnits, :shieldPower
   end
 end

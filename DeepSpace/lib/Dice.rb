@@ -11,15 +11,15 @@ module Deepspace
         @FIRSTSHOTPROB=0.5
         @generator=Random.new
       end
-      
+
       def to_s
         "NHANGARSPROB: @#{@NHANGARSPROB} NSHIELDSPROB: #{@NSHIELDSPROB} NWEAPONSPROB: #{@NWEAPONSPROB} FIRSTSHOTPROB: #{@FIRSTSHOTPROB}"
       end
-      
+
       def initWithNHangars
         @generator.rand < @NHANGARSPROB ? 0 : 1
       end
-      
+
       def initWithNWeapons
         p = @generator.rand
         if p < @NWEAPONSPROB
@@ -30,22 +30,22 @@ module Deepspace
           3
         end
       end
-      
+
       def initWithNShields
        @generator.rand < @NSHIELDSPROB ? 0 : 1
       end
-      
+
       def whoStarts(nPlayers)
         @generator.rand(nPlayers)
       end
-      
+
       def firstShot
         @generator.rand < @FIRSTSHOTPROB ? GameCharacter::SPACESTATION : GameCharacter::ENEMYSTARTSHIP
       end
-      
+
       def spaceStationMoves(speed)
         @generator.rand < speed
       end
-      
+
     end
 end

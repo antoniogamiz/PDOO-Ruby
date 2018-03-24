@@ -11,13 +11,13 @@ module Deepspace
       @boost=boost
       @uses=uses
     end
-    
+
     def self.newCopy(s)
      new(s.name, s.boost, s.uses)
     end
 
-    attr_reader :boost, :uses
-    
+    attr_reader :boost, :uses, :name
+
     def useIt
       if @uses > 0
         @uses-=1
@@ -26,14 +26,14 @@ module Deepspace
         1.0
       end
     end
-    
+
     def getUIversion
       ShieldToUI.new(self)
     end
-    
+
     def to_s
       "Name: #{@name} Boost: #{@boost} Uses: #{@uses}"
     end
-    
+
   end
 end
