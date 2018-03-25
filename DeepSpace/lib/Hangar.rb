@@ -42,22 +42,15 @@ module Deepspace
     end
 
     def removeWeapon(w)
-      if @weapons.length > w && w >= 0
         @weapons.delete_at(w)
-      else
-        return nil
-      end
     end
 
     def removeShieldBooster(s)
-      if @shieldBoosters.length > s && s >= 0
         @shieldBoosters.delete_at(s)
-      else
-        return nil
-      end
     end
 
     def to_s
+      "maxElements #{@maxElements}, weapons #{@weapons.join(", ")}, shieldBoosters #{@shieldBoosters.join(", ")}"
     end
 
     private
