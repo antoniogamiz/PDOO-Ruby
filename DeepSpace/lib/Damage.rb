@@ -57,7 +57,7 @@ class Damage
     if @weapons != nil
       index= 0
         for i in @weapons
-          if i.type == w.type
+          if i == w.type
             @weapons.delete_at(index)
             break
           end
