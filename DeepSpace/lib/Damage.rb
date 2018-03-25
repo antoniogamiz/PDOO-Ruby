@@ -9,12 +9,13 @@ module Deepspace
 
 class Damage
   def initialize(w, s, wl)
-    @nWeapons=w
     @nShields=s
     if wl == nil
       @weapons=nil
+      @nWeapons= w
     else
       @weapons=Array.new(wl)
+      @nWeapons= nil
     end
 
   end
@@ -54,7 +55,14 @@ class Damage
 
   def discardWeapon(w)
     if @weapons != nil
-      @weapons.delete(w.type)
+      index= 0
+        for i in @weapons
+          if i.type == w.type
+            @weapons.delete_at(index)
+            break
+          end
+          index += 1
+        end
     else
       if @nWeapons > 0
         @nWeapons -= 1
@@ -71,7 +79,7 @@ class Damage
   end
 
   def hasNoEffect
-    @nShields == 0 && @nWeapons ==0
+    @nShields == 0 && @nWeapons ==0 && @weapons == nil
   end
 
   private :arrayContainsType
