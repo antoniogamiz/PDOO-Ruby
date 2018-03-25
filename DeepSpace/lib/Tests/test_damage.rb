@@ -12,16 +12,18 @@ module Tests
         @s1=[Deepspace::ShieldBooster.new("a", 1, 2)]
         @s2=[Deepspace::ShieldBooster.new("a", 3, 4), Deepspace::ShieldBooster.new("c", 5, 6)]
 
-        @w=Deepspace::Weapon.new("a", Deepspace::WeaponType::LASER, 10)
-        # @w2=Deepspace::Weapon.new("b", Deepspace::WeaponType::MISSILE, 20)
-        # @w3=Deepspace::Weapon.new("c", Deepspace::WeaponType::PLASMA, 30)
+        @w1=Deepspace::Weapon.new("a", Deepspace::WeaponType::LASER, 10)
+        @w2=Deepspace::Weapon.new("b", Deepspace::WeaponType::MISSILE, 20)
+        @w3=Deepspace::Weapon.new("c", Deepspace::WeaponType::PLASMA, 30)
 
-        @w1=Deepspace::WeaponType::LASER
-        @w2=Deepspace::WeaponType::MISSILE
-        @w3=Deepspace::WeaponType::PLASMA
+        @wt1=Deepspace::WeaponType::LASER
+        @wt2=Deepspace::WeaponType::MISSILE
+        @wt3=Deepspace::WeaponType::PLASMA
 
-        @wl1=[@w1, @w1, @w2, @w3, @w3]
-        @wl2=[@w1, @w2, @w2, @w3]
+        @wl1=[@wt1, @wt1, @wt2, @wt3, @wt3]
+        @wl2=[@wt1, @wt2, @wt2, @wt3]
+
+        @wa=[@w1, @w2, @w2, @w3]
 
         @damage_numeric1=Deepspace::Damage.newNumericWeapons(10, 10)
         @damage_numeric2=Deepspace::Damage.newNumericWeapons(12, 11)
@@ -38,14 +40,14 @@ module Tests
       end
 
       def test_adjust
-        assert_equal [@w1, @w2, @w3], @damage_specific1.adjust(@wl2, []).weapons, "Error en interseccion"
-        assert_equal 0, @damage_specific1.adjust(@wl2, []).nShields, "Error en minimo"        
+        assert_equal [@wt1, @wt2, @wt3], @damage_specific1.adjust(@wa, []).weapons, "Error en interseccion"
+        assert_equal 0, @damage_specific1.adjust(@wa, []).nShields, "Error en minimo"
       end
 
       def test_discardWeapon
         assert_equal @damage_numeric1.nWeapons-1, @damage_numeric1.discardWeapon(1), "Error en :discardWeapon"
-        @damage_specific2.discardWeapon(@w)
-        assert_equal [@w2, @w2, @w3], @damage_specific2.weapons, "Error en :discardWeapon (specific)"
+        @damage_specific2.discardWeapon(@w1)
+        assert_equal [@wt2, @wt2, @wt3], @damage_specific2.weapons, "Error en :discardWeapon (specific)"
       end
 
       def test_discardShieldBooster

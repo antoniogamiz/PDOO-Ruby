@@ -40,7 +40,24 @@ class Damage
 
   def adjust(w, s)
     ns = [s.length, @nShields].min
-    aux = Damage.new(nil, ns, @weapons & w)
+    if @weapons==nil
+      aux=Damage.newNumericWeapons([@nWeapons, w.length].min, ns)
+    else
+      weapons=Array.new
+      wt=Array.new
+      w.each{ |x|
+        wt.push x.type
+      }
+      @weapons.each { |x|
+        n=[@weapons.count(x), wt.count(x)].min
+        if weapons.count(x)==0 && n!=0
+          for i in 1..n
+            weapons.push x
+          end
+        end
+      }
+      aux=Damage.newSpecificWeapons(weapons, ns)
+    end
     aux
   end
 
