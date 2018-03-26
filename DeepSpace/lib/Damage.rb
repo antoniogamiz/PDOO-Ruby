@@ -96,7 +96,7 @@ class Damage
   end
 
   def hasNoEffect
-    @nShields == 0 && @nWeapons ==0 && @weapons == nil
+    @nShields == 0 && @nWeapons ==0 && ( @weapons == nil or @weapons.length == 0 )
   end
 
   private :arrayContainsType
