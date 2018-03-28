@@ -43,7 +43,7 @@ class GameUniverse
       end
       
       if enemyWins
-        if(!@dice.spaceStationMoves(station.getSpeed))
+        if(!@dice.spaceStationMoves(station.speed))
           station.setPendingDamage(enemy.damage)
           combatResult = CombatResult::ENEMYWINS
         else

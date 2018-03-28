@@ -41,7 +41,12 @@ class Damage
   def adjust(w, s)
     ns = [s.length, @nShields].min
     if @weapons==nil
-      aux=Damage.newNumericWeapons([@nWeapons, w.length].min, ns)
+      int nw=[@nWeapons, w.length].min
+      if nw==0 && ns==0
+        aux=nil
+      else
+        aux=Damage.newNumericWeapons(nw, ns)
+      end
     else
       weapons=Array.new
       wt=Array.new
@@ -56,8 +61,15 @@ class Damage
           end
         end
       }
-      aux=Damage.newSpecificWeapons(weapons, ns)
+      if weapons.length == 0 && ns == 0
+        aux=nil
+      else
+        aux=Damage.newSpecificWeapons(weapons, ns)        
+      end
     end
+    
+    
+    
     aux
   end
 

@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 require_relative 'SpaceStationToUI'
-
+require_relative 'ShotResult'
 module Deepspace
 
 class SpaceStation
@@ -97,10 +97,10 @@ class SpaceStation
     size=@weapons.length
     factor=1
     
-    for i in (0..size)
+    for i in (0...size)
       factor*=@weapons[i].useIt
     end
-    
+
     @ammoPower*factor    
   end
 
@@ -129,11 +129,11 @@ class SpaceStation
   def protection
     size=@shieldBoosters.length
     factor=1
-    
-    for i in (0..size)
+
+    for i in (0...size)
       factor*=@shieldBoosters[i].useIt
     end
-    
+
     @shieldPower*factor
   end
 
