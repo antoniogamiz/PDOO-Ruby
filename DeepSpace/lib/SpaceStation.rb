@@ -60,7 +60,13 @@ class SpaceStation
   end
 
   def discardShieldBooster(i)
-
+      if i>=0 && i<@shieldBoosters.length
+        @shieldBoosters.delete_at(i)
+        if pendingDamage!=nil
+          pendingDamage.discardShieldBooster
+          cleanPendingDamage
+        end
+      end
   end
 
   def discardShieldBoosterInHangar(i)
@@ -70,7 +76,13 @@ class SpaceStation
   end
 
   def discardWeapon(i)
-
+      if i>=0 && i<@weapons.length
+        w=@weapons.delete_at(i)
+        if @pendingDamage!=nil
+          @pendingDamage.discardWeapon(w)
+          cleanPendingDamage
+        end
+    end
   end
 
   def discardWeaponInHangar(i)
@@ -80,7 +92,14 @@ class SpaceStation
   end
 
   def fire
-
+    size=@weapons.lenght
+    factor=1
+    
+    for i in (0..size)
+      factor*=@weapons[i].useIt
+    end
+    
+    @ammoPower*factor    
   end
 
   def getUIversion
@@ -111,7 +130,14 @@ class SpaceStation
   end
 
   def protection
-
+    size=@shieldBoosters.lenght
+    factor=1
+    
+    for i in (0..size)
+      factor*=@shieldBoosters[i].useIt
+    end
+    
+    @shieldPower*factor
   end
 
   def receiveWeapon(w)
@@ -137,7 +163,16 @@ class SpaceStation
   end
 
   def receiveShot(shot)
-
+      myProtection = protection()
+      
+      if myProtection >= shot
+        @shieldPower-=@@SHIELDLOSSPERUNITSHOT*shot
+        @shieldPower=[0.0, @shieldPower].max
+        ShotResult::RESIST
+      else
+        @shieldPower=0.0
+        ShotResult::DONOTRESIST
+      end
   end
 
   def receiveSupplies(s)
@@ -159,7 +194,25 @@ class SpaceStation
   end
 
   def setLoot(loot)
-
+      dealer=CardDealer.instance
+      
+      if loot.nHangars > 0
+        receiveHangar(dealer.nextHangar)
+      end
+      
+      for i in (0...loot.nSupplies)
+        receiveSupplies(dealer.nextSuppliesPackage)
+      end
+      
+      for i in (0...loot.nWeapons)
+        receiveWeapon(dealer.nextWeapon)
+      end
+      
+      for i in (0...loot.nShields)
+        receiveShieldBooster(dealer.nextShieldBooster)
+      end
+      
+      @nMedals+=loot.nMedals
   end
 
   def setPendingDamage(d)
