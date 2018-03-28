@@ -109,21 +109,16 @@ class SpaceStation
   end
 
   def mountShieldBooster(i)
-    if @hangar != nil
+    unless @hangar == nil
       s = @hangar.removeShieldBooster(i)
-      if s != nil
-        @shieldBoosters.push(s)
-      end
+      @shieldBoosters.push(s) if s != nil
     end
   end
 
   def mountWeapon(i)
-    if @hangar != nil
+    unless @hangar == nil
       w = @hangar.removeWeapon(i)
-
-      if w != nil
-        @weapons.push(w)
-      end
+      @weapons.push(w) if w != nil
     end
   end
 
@@ -132,7 +127,7 @@ class SpaceStation
   end
 
   def protection
-    size=@shieldBoosters.lenght
+    size=@shieldBoosters.length
     factor=1
     
     for i in (0..size)

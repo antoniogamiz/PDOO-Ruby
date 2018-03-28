@@ -6,7 +6,9 @@
 require_relative 'WeaponType'
 module Deepspace
 
-a = [WeaponType::LASER, WeaponType::MISSILE, WeaponType::PLASMA]
-a.delete_at(1)
-  print a
+  for i in (0...0)
+    puts i
+    puts a
+  end
+
 end
