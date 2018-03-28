@@ -6,7 +6,9 @@ require_relative 'Dice'
 require_relative 'GameStateController'
 require_relative 'GameUniverseToUI'
 require_relative 'CardDealer'
-
+require_relative 'SpaceStation'
+require_relative 'CombatResult'
+require_relative 'GameCharacter'
 
 module Deepspace
 class GameUniverse
@@ -21,9 +23,11 @@ class GameUniverse
     @currentStation = nil
   end
 
-  attr_reader :gameState
-
-  def combatGo
+  def state
+    @gameState.state
+  end
+  
+  def combatGo(station, enemy)
       if @dice.firstShot == GameCharacter::ENEMYSTARSHIP
         result = station.receiveShot(enemy.fire)
         

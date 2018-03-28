@@ -16,8 +16,8 @@ class SpaceStation
     @fuelUnits=supplies.fuelUnits
     @shieldPower=supplies.shieldPower
     @nMedals=0
-    @weapons=[]
-    @shieldBoosters=[]
+    @weapons=Array.new()
+    @shieldBoosters=Array.new()
     @hangar=nil
     @pendingDamage=nil
   end
@@ -31,11 +31,13 @@ class SpaceStation
   def assignFuelValue(f)
     if f<=@@MAXFUEL
       @fuelUnits=f
+    else
+      @fuelUnits=@@MAXFUEL
     end
   end
 
   def cleanPendingDamage
-    if @pendingDamage.hasNoEffect
+    if @pendingDamage.hasNoEffect && @pendingDamage != nil
       @pendingDamage=nil
     end
   end
@@ -92,7 +94,7 @@ class SpaceStation
   end
 
   def fire
-    size=@weapons.lenght
+    size=@weapons.length
     factor=1
     
     for i in (0..size)

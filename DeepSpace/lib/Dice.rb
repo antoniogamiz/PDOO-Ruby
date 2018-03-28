@@ -40,7 +40,7 @@ module Deepspace
       end
 
       def firstShot
-        @generator.rand < @FIRSTSHOTPROB ? GameCharacter::SPACESTATION : GameCharacter::ENEMYSTARTSHIP
+        @generator.rand < @FIRSTSHOTPROB ? GameCharacter::SPACESTATION : GameCharacter::ENEMYSTARSHIP
       end
 
       def spaceStationMoves(speed)

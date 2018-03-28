@@ -5,6 +5,6 @@
 module Deepspace
   module GameCharacter
       SPACESTATION=:spacestation
-      ENEMYSTARTSHIP=:enemystartship
+      ENEMYSTARSHIP=:enemystarship
   end
 end

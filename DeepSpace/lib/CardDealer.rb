@@ -79,7 +79,7 @@ class CardDealer
     end
     
     def createWeapons()
-       @weapons.add(Weapon.new("Láser de Luffy", WeaponType.LASER, 100))
+       @weapons.add(Weapon.new("Láser de Luffy", WeaponType::LASER, 100))
        @weapons.add(Weapon.new("Láser infinito",WeaponType::LASER,100))
        @weapons.add(Weapon.new("Láser ACME",WeaponType::LASER,1))
        @weapons.add(Weapon.new("Láser ACME",WeaponType::LASER,1))
@@ -92,7 +92,7 @@ class CardDealer
        @weapons.add(Weapon.new("Láser Mejorado",WeaponType::LASER,4))
        @weapons.add(Weapon.new("Láser Mejorado",WeaponType::LASER,4))
        
-      @weapons.add(Weapon.new("Misiles de Franky", WeaponType.MISSILE, 100))
+      @weapons.add(Weapon.new("Misiles de Franky", WeaponType::MISSILE, 100))
        @weapons.add(Weapon.new("Misiles del apocalipsis",WeaponType::MISSILE,100))
        @weapons.add(Weapon.new("Misil ACME",WeaponType::MISSILE,1))
        @weapons.add(Weapon.new("Misil ACME",WeaponType::MISSILE,1))
@@ -101,7 +101,7 @@ class CardDealer
        @weapons.add(Weapon.new("Misil normal",WeaponType::MISSILE,2))
        @weapons.add(Weapon.new("Misil mejorado",WeaponType::MISSILE,2))     
        
-       @weapons.add(Weapon.new("Gomu gomu no pistolet", WeaponType.PLASMA, 100))
+       @weapons.add(Weapon.new("Gomu gomu no pistolet", WeaponType::PLASMA, 100))
        @weapons.add(Weapon.new("Cañón definitivo",WeaponType::PLASMA,100))
        @weapons.add(Weapon.new("Cañón ACME",WeaponType::PLASMA,1)) 
        @weapons.add(Weapon.new("Cañón ACME",WeaponType::PLASMA,1)) 
@@ -111,7 +111,7 @@ class CardDealer
     end
     
     def createShieldBoosters() 
-       @shieldBoosters.add(ShieldBoosters.new("Haki de endurecimiento", 10.0, 100))
+       @shieldBoosters.add(ShieldBooster.new("Haki de endurecimiento", 10.0, 100))
        @shieldBoosters.add(ShieldBooster.new("El escudo infinito",2.0,100))
        @shieldBoosters.add(ShieldBooster.new("El escudo definitivo",10.0,2))
        @shieldBoosters.add(ShieldBooster.new("Escudo ACME",1.5,2))
