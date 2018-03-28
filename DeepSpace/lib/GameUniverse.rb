@@ -3,8 +3,10 @@
 # and open the template in the editor.
 
 require_relative 'Dice'
-# require_relative 'GameStateCrontoller'
+require_relative 'GameStateController'
 require_relative 'GameUniverseToUI'
+require_relative 'CardDealer'
+
 
 module Deepspace
 class GameUniverse
@@ -13,7 +15,7 @@ class GameUniverse
     @turns = 0
     @currentStationIndex = 0
     @dice = Dice.new
-    # @gameState = GameStateController.new
+    @gameState = GameStateController.new
     @currentEnemy =  nil
     @spaceStations = []
     @currentStation = nil
@@ -21,12 +23,46 @@ class GameUniverse
 
   attr_reader :gameState
 
-  def combat
-
+  def combatGo
+      if @dice.firstShot == GameCharacter::ENEMYSTARSHIP
+        result = station.receiveShot(enemy.fire)
+        
+        if result == ShotResult::RESIST
+          result = enemy.receiveShot(station.fire)
+          enemyWins = (result == ShotResult::RESIST)
+        else
+          enemyWins = true
+        end
+      else
+        result = enemy.receiveShot(station.fire)
+        enemyWins = (result == ShotResult::RESIST)
+      end
+      
+      if enemyWins
+        if(!@dice.spaceStationMoves(station.getSpeed))
+          station.setPendingDamage(enemy.damage)
+          combatResult = CombatResult::ENEMYWINS
+        else
+          station.move
+          combatResult = CombatResult::STATIONESCAPES
+        end  
+      else
+        station.setLoot(enemy.loot)
+        combatResult = CombatResult::STATIONWINS
+      end
+      
+      @gameState.next(@turns, @spaceStations.length)
+      
+      combatResult
   end
 
-  def combat_con_argumentos
-
+  def combat
+      state = @gameState.state
+      if state == GameState::BEFORECOMBAT || state == GameState::INIT
+        combatGo(@currentStation, @currentEnemy)
+      else
+        CombatResult::NOCOMBAT
+      end 
   end
 
   def discardHangar
@@ -68,7 +104,28 @@ class GameUniverse
   end
 
   def init(names)
+    if @gameState.state == GameState::CANNOTPLAY
+      @spaceStations = Array.new
+      dealer = CardDealer.instance
 
+      for name in names
+        supplies = dealer.nextSuppliesPackage
+        station = SpaceStation.new(name, supplies)
+        nh = @dice.initWithNHangars
+        nw = @dice.initWithNWeapons
+        ns = @dice.initWithNShields
+
+        station.setLoot(Loot.new(0, nw, ns, nh, 0))
+        @spaceStations.push(station)
+      end
+
+      @currentStationIndex = @dice.whoStarts(names.length)
+      @currentStation = @spaceStations[@currentStationIndex]
+      @currentEnemy = dealer.nextEnemy
+
+      @gameState.next(@turns, @spaceStations.length)
+
+      end
   end
 
   def mountShieldBooster(i)
@@ -84,7 +141,24 @@ class GameUniverse
   end
 
   def nextTurn
+    if @gameState.state == GameState::AFTERCOMBAT 
+      if @currentStation.validState 
+        @currentStationIndex = (@currentStationIndex+1)%@spaceStations.length
+        @turns += 1
+          
+        @currentStation = @spaceStations[@currentStationIndex]
+        @currentStation.cleanUpMountedItems
+                  
+        @currentEnemy = CardDealer.instance.nextEnemy
+        @gameState.next(@turns, @spaceStations.length)  
 
+        true
+      else
+        false
+      end
+    else
+      false
+    end  
   end
 
 end
