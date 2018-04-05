@@ -41,12 +41,8 @@ class Damage
   def adjust(w, s)
     ns = [s.length, @nShields].min
     if @weapons==nil
-      int nw=[@nWeapons, w.length].min
-      if nw==0 && ns==0
-        aux=nil
-      else
-        aux=Damage.newNumericWeapons(nw, ns)
-      end
+      nw=[@nWeapons, w.length].min
+      aux=Damage.newNumericWeapons(nw, ns)
     else
       weapons=Array.new
       wt=Array.new
@@ -61,11 +57,7 @@ class Damage
           end
         end
       }
-      if weapons.length == 0 && ns == 0
-        aux=nil
-      else
-        aux=Damage.newSpecificWeapons(weapons, ns)        
-      end
+      aux=Damage.newSpecificWeapons(weapons, ns)        
     end
     
     
@@ -108,7 +100,11 @@ class Damage
   end
 
   def hasNoEffect
-    @nShields == 0 && @nWeapons ==0 && ( @weapons == nil or @weapons.length == 0 )
+    if @nWeapons==nil
+      @weapons.length==0 && @nShields==0
+    else
+      @nWeapons==0 && @nShields==0
+    end
   end
 
   private :arrayContainsType
