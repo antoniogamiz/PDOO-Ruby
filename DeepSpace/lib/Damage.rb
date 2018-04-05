@@ -112,6 +112,7 @@ class Damage
   end
 
   private :arrayContainsType
+  private_class_method :new
 end
 
 end
