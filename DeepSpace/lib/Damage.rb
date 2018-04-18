@@ -15,7 +15,7 @@ class Damage
       @nWeapons= w
     else
       @weapons=Array.new(wl)
-      @nWeapons= nil
+      @nWeapons=-1
     end
 
   end
@@ -100,7 +100,7 @@ class Damage
   end
 
   def hasNoEffect
-    if @nWeapons==nil
+    if @nWeapons==-1
       @weapons.length==0 && @nShields==0
     else
       @nWeapons==0 && @nShields==0
