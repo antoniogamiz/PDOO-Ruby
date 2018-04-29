@@ -9,12 +9,12 @@ require_relative 'WeaponType'
 require_relative 'ShieldBooster'
 require_relative 'Hangar'
 require_relative 'Loot'
-require_relative 'Damage'
+require_relative 'NumericDamage'
+require_relative 'SpecificDamage'
 require_relative 'EnemyStarShip'
 
 module Deepspace
 
-# 2.3.17 - Translatio from Java
 # @author Profesor
     
 class CardDealer 
@@ -75,11 +75,9 @@ class CardDealer
         @suppliesPackages.add(SuppliesPackage.new(3,50,3))  
         @suppliesPackages.add(SuppliesPackage.new(40,100,40))
         @suppliesPackages.add(SuppliesPackage.new(100,100,100))
-        @suppliesPackages.add(SuppliesPackage.new(50, 50, 50))
     end
     
-    def createWeapons()
-       @weapons.add(Weapon.new("Láser de Luffy", WeaponType::LASER, 100))
+    def createWeapons() 
        @weapons.add(Weapon.new("Láser infinito",WeaponType::LASER,100))
        @weapons.add(Weapon.new("Láser ACME",WeaponType::LASER,1))
        @weapons.add(Weapon.new("Láser ACME",WeaponType::LASER,1))
@@ -92,7 +90,6 @@ class CardDealer
        @weapons.add(Weapon.new("Láser Mejorado",WeaponType::LASER,4))
        @weapons.add(Weapon.new("Láser Mejorado",WeaponType::LASER,4))
        
-      @weapons.add(Weapon.new("Misiles de Franky", WeaponType::MISSILE, 100))
        @weapons.add(Weapon.new("Misiles del apocalipsis",WeaponType::MISSILE,100))
        @weapons.add(Weapon.new("Misil ACME",WeaponType::MISSILE,1))
        @weapons.add(Weapon.new("Misil ACME",WeaponType::MISSILE,1))
@@ -101,7 +98,6 @@ class CardDealer
        @weapons.add(Weapon.new("Misil normal",WeaponType::MISSILE,2))
        @weapons.add(Weapon.new("Misil mejorado",WeaponType::MISSILE,2))     
        
-       @weapons.add(Weapon.new("Gomu gomu no pistolet", WeaponType::PLASMA, 100))
        @weapons.add(Weapon.new("Cañón definitivo",WeaponType::PLASMA,100))
        @weapons.add(Weapon.new("Cañón ACME",WeaponType::PLASMA,1)) 
        @weapons.add(Weapon.new("Cañón ACME",WeaponType::PLASMA,1)) 
@@ -111,7 +107,6 @@ class CardDealer
     end
     
     def createShieldBoosters() 
-       @shieldBoosters.add(ShieldBooster.new("Haki de endurecimiento", 10.0, 100))
        @shieldBoosters.add(ShieldBooster.new("El escudo infinito",2.0,100))
        @shieldBoosters.add(ShieldBooster.new("El escudo definitivo",10.0,2))
        @shieldBoosters.add(ShieldBooster.new("Escudo ACME",1.5,2))
@@ -126,7 +121,6 @@ class CardDealer
     end
                                
     def createHangars() 
-        @hangars.add(Hangar.new(6))
         @hangars.add(Hangar.new(4))
         @hangars.add(Hangar.new(4))
         @hangars.add(Hangar.new(3))
@@ -143,23 +137,21 @@ class CardDealer
         regularLoot1=Loot.new(1,1,2,1,1)
         badLoot=Loot.new(1,1,1,0,1)
         goodLoot=Loot.new(2,2,2,1,2)
-        luffyLoot=Loot.new(5,5,5,5,5)
         
-        regularDamage0=Damage.newNumericWeapons(2,1) 
-        regularDamage1=Damage.newNumericWeapons(1,1) 
-        lowDamage0=Damage.newNumericWeapons(1,1)
-        lowDamage1=Damage.newNumericWeapons(0,1)
-        lowDamage2=Damage.newNumericWeapons(1,0)
-        luffyAttack=Damage.newNumericWeapons(3,3)
+        regularDamage0=NumericDamage.new(2,1) 
+        regularDamage1=NumericDamage.new(1,1) 
+        lowDamage0=NumericDamage.new(1,1)
+        lowDamage1=NumericDamage.new(0,1)
+        lowDamage2=NumericDamage.new(1,0)
         
-        regularSpecificDamage0=Damage.newSpecificWeapons([WeaponType::LASER,WeaponType::MISSILE,WeaponType::PLASMA],1)
-        hardSpecificDamage0=Damage.newSpecificWeapons([WeaponType::LASER,WeaponType::LASER,WeaponType::LASER, \
+        regularSpecificDamage0=SpecificDamage.new([WeaponType::LASER,WeaponType::MISSILE,WeaponType::PLASMA],1)
+        hardSpecificDamage0=SpecificDamage.new([WeaponType::LASER,WeaponType::LASER,WeaponType::LASER, \
                                         WeaponType::MISSILE,WeaponType::MISSILE,WeaponType::MISSILE, \
                                         WeaponType::PLASMA,WeaponType::PLASMA,WeaponType::PLASMA],2)    
-        softSpecificDamage0=Damage.newSpecificWeapons([WeaponType::LASER],1)  
-        softSpecificDamage1=Damage.newSpecificWeapons([WeaponType::MISSILE],1)  
-        softSpecificDamage2=Damage.newSpecificWeapons([WeaponType::PLASMA],1)  
-        mediumSpecificDamage0=Damage.newSpecificWeapons([WeaponType::LASER,WeaponType::MISSILE],2)  
+        softSpecificDamage0=SpecificDamage.new([WeaponType::LASER],1)  
+        softSpecificDamage1=SpecificDamage.new([WeaponType::MISSILE],1)  
+        softSpecificDamage2=SpecificDamage.new([WeaponType::PLASMA],1)  
+        mediumSpecificDamage0=SpecificDamage.new([WeaponType::LASER,WeaponType::MISSILE],2)  
         
         @enemies.add(EnemyStarShip.new("Enemigo fácil -1",0,0,regularLoot0,lowDamage0));
         @enemies.add(EnemyStarShip.new("Enemigo fácil -1",0,10,badLoot,lowDamage0));
@@ -188,8 +180,15 @@ class CardDealer
         @enemies.add(EnemyStarShip.new("Enemigo difícil 0",200,100,goodLoot,hardSpecificDamage0));          
         @enemies.add(EnemyStarShip.new("Enemigo difícil 1",100,200,goodLoot,hardSpecificDamage0));   
         
-        @enemies.add(EnemyStarShip.new("Enemigo imposible",500,500,goodLoot,hardSpecificDamage0));     
-        @enemies.add(EnemyStarShip.new("Monkey D. Luffy", 500, 500, luffyLoot, luffyAttack))
+        @enemies.add(EnemyStarShip.new("Enemigo imposible",500,500,goodLoot,hardSpecificDamage0));   
+        
+        # Enemigos que transforman
+        
+        transformLoot0=Loot.new(1,1,1,0,1,true,false)
+        transformLoot1=Loot.new(1,1,1,0,1,false,true)
+        
+        @enemies.add(EnemyStarShip.new("Enemigo transforma 0",200,100,transformLoot0,regularDamage0))
+        @enemies.add(EnemyStarShip.new("Enemigo transforma 1",100,200,transformLoot1,regularDamage1))
     end
 end # class
 
