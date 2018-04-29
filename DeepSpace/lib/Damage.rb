@@ -7,7 +7,36 @@ require_relative 'DamageToUI'
 
 module Deepspace
 
-class Damage
+  class Damage
+    
+    attr_reader :nShields
+    
+    def initialize(s)
+      @nShields=s
+    end
+    
+    def adjustShieldBoosters(s)
+      return [s.length, @nShields].min
+    end
+    
+    def discardShieldBooster
+      if @nShields>0
+        @nShields-=1
+      end
+    end
+    
+    def hasNoEffect
+        @nShields==0
+    end
+    
+    def toString
+      "Damage{" + "nShields=" + @nShields
+    end
+    
+  end
+  
+  
+class Damage2
   def initialize(w, s, wl)
     @nShields=s
     if wl == nil
