@@ -213,7 +213,7 @@ class SpaceStation
       
       @nMedals+=loot.nMedals
       
-      if loot.getEfficient then return Transform::GETEFFCIENT end
+      if loot.efficient then return Transform::GETEFFCIENT end
       if loot.spaceCity then return Transform::SPACECITY end
       return Transformation::NOTRANSFORM
   end

@@ -21,7 +21,7 @@ class NumericDamage < Damage
   end
   
   def getUIversion
-    NumericWeaponToUI(self)
+    NumericWeaponToUI.new(self)
   end
   
   def adjust(w, s)

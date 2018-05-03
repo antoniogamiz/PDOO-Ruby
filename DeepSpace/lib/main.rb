@@ -6,9 +6,8 @@
 require_relative 'WeaponType'
 module Deepspace
 
-  for i in (0...0)
+  for i in (0...1)
     puts i
-    puts a
   end
 
 end
