@@ -4,6 +4,8 @@
 
 require_relative 'SpaceStationToUI'
 require_relative 'ShotResult'
+require_relative 'Transformation'
+
 module Deepspace
 
 class SpaceStation
@@ -210,6 +212,10 @@ class SpaceStation
       end
       
       @nMedals+=loot.nMedals
+      
+      if loot.getEfficient then return Transform::GETEFFCIENT end
+      if loot.spaceCity then return Transform::SPACECITY end
+      return Transformation::NOTRANSFORM
   end
 
   def setPendingDamage(d)
