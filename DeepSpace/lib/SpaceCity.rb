@@ -4,6 +4,7 @@
 
 require_relative 'SpaceStation'
 require_relative 'Transformation'
+
 module Deepspace
   class SpaceCity < SpaceStation
       
@@ -15,6 +16,7 @@ module Deepspace
       @collaborators=rest
     end
     
+    #Override
     def fire
       fire_=@base.fire
       for i in @collaborators.lenght
@@ -23,6 +25,7 @@ module Deepspace
       fire_
     end
     
+    #Override
     def protection
       protection_=@base.protection
       for i in @collaborators.lenght
@@ -31,6 +34,7 @@ module Deepspace
       protection_
     end
     
+    #Override
     def setLoot(l)
       super
       Transformation::NOTRANSFORM
