@@ -3,11 +3,9 @@
 # and open the template in the editor.
 
 module Deepspace
-  module CombatResult
-    ENEMYWINS=:enemywins
-    NOCOMBAT=:nocombat
-    STATIONESCAPES=:stationescapes
-    STATIONWINS=:stationwins
-    STATIONWINDSANDCONVERTS=:stationwinsandconverts
+  module Transformation
+    NOTRANSFORM=:notransform
+    GETEFFICIENT=:getefficient
+    SPACECITY=:spacecity
   end
 end
