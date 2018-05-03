@@ -10,6 +10,9 @@ module Deepspace
         @NWEAPONSPROB=0.33
         @FIRSTSHOTPROB=0.5
         @generator=Random.new
+      
+        @EXTRAEFFICIENCYPROB=1.2
+        
       end
 
       def to_s
@@ -45,6 +48,10 @@ module Deepspace
 
       def spaceStationMoves(speed)
         @generator.rand < speed
+      end
+      
+      def extraEfficiency
+          @generator.rand >= EXTRAEFFICIENCYPROB ? true:false 
       end
 
     end
