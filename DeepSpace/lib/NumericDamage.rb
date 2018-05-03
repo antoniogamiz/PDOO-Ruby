@@ -21,11 +21,11 @@ class NumericDamage < Damage
   end
   
   def getUIversion
-    NumericWeaponToUI.new(self)
+    NumericDamageToUI.new(self)
   end
   
   def adjust(w, s)
-    new([@nWeapons, w.length].min, adjustShieldBoosters(s))
+    self.new([@nWeapons, w.length].min, adjustShieldBoosters(s))
   end
   
   def discardWeapon(w)

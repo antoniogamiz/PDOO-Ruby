@@ -17,7 +17,7 @@ class SpecificDamage < Damage
   end
 
   def copy(sp)
-    new(sp.weapons, sp.nShields)
+    self.new(sp.weapons, sp.nShields)
   end
 
   def getUIversion

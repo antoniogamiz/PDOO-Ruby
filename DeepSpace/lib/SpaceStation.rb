@@ -196,7 +196,11 @@ class SpaceStation
       dealer=CardDealer.instance
       
       if loot.nHangars > 0
-        receiveHangar(dealer.nextHangar)
+        a_=dealer.nextHangar
+        receiveHangar(a_)
+        puts "\nDEPURANDO 1.1\n"
+        puts a_.to_s
+        puts "\nDEPURANDO 1.1\n"
       end
       
       for i in (0...loot.nSupplies)
