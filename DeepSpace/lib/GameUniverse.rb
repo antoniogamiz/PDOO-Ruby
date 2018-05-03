@@ -9,6 +9,12 @@ require_relative 'CardDealer'
 require_relative 'SpaceStation'
 require_relative 'CombatResult'
 require_relative 'GameCharacter'
+require_relative 'Transformation'
+
+require_relative 'SpaceCity'
+require_relative 'PowerEfficientSpaceStation'
+require_relative 'BetaPowerEfficientSpaceStation'
+
 
 module Deepspace
 class GameUniverse
@@ -21,6 +27,8 @@ class GameUniverse
     @currentEnemy =  nil
     @spaceStations = []
     @currentStation = nil
+    
+    @haveSpaceCity=false
   end
 
   def state
@@ -51,15 +59,36 @@ class GameUniverse
           combatResult = CombatResult::STATIONESCAPES
         end  
       else
-        station.setLoot(enemy.loot)
+        l=enemy.loot
+        trans=station.setLoot(enemy.loot)
+        
+        if (trans==Transformation::GETEFFICIENT) && !@haveSpaceCity
+          makeStationEfficient
+        else
+          if trans==Transformation::SPACECITY
+            createSpaceCity
+          end
+        end
+        
         combatResult = CombatResult::STATIONWINS
-      end
-      
+      end    
+    
       @gameState.next(@turns, @spaceStations.length)
       
       combatResult
   end
-
+ 
+  def makeStationEfficient
+    @currentStation= @dice.extraEfficiency ? PowerEfficientSpaceStation.new(currentStation) : BetaPowerEfficientSpaceStation(currentStation)
+  end
+  
+  def createSpaceCity
+    if !@haveSpaceCity
+      @currentSpaceStation=SpaceCity.new(@currentStation, spaceStations)
+      @haveSpaceCity=true
+    end
+  end
+  
   def combat
       state = @gameState.state
       if state == GameState::BEFORECOMBAT || state == GameState::INIT
