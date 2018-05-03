@@ -55,12 +55,14 @@ class TextUI
               pause("\n Has PERDIDO el combate. Cumple tu castigo.")
             when DS::CombatResult::STATIONESCAPES 
               pause("\n Has logrado escapar. Eres una Gallina Espacial.")
-            when DS::CombatResult::STATIONWINS 
+            when DS::CombatResult::STATIONWINS
               pause("\n Has GANADO el combate. Disfruta de tu botín.")
               if(@controller.haveAWinner()) then
                 pause("\n\n **** **** ****  HAS GANADO LA PARTIDA  **** **** ****\n")
                 exit(0)
               end
+            when DS::CombatResult::STATIONWINSANDCONVERTS
+              pause("\n Has GANADO el combate. Además te has TRANSFORMADO. Disfruta de tu botín.")
           end
           begin    # Until a valid next turn
               puts showStation(@gameUI.currentStation)
