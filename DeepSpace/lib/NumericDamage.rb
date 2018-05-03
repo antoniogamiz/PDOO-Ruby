@@ -5,11 +5,13 @@
 require_relative 'Damage'
 require_relative 'NumericDamageToUI'
 
-class NumericDamage
+class NumericDamage < Damage
+  
+  attr_reader :nWeapons
   
   def initialize(n, s)
     super(s)
-    @nWeapons= n
+    @nWeapons=n
   end
   
   def copy(nd)
@@ -19,4 +21,25 @@ class NumericDamage
   def getUIversion
     NumericWeaponToUI(self)
   end
+  
+  def adjust(w, s)
+    new([@nWeapons, w.length].min, adjustShieldBoosters(s))
+  end
+  
+  def discardWeapon(w)
+    if @nWeapons > 0
+      @nWeapons-=1
+    end
+  end
+  
+  def hasNoEffect
+    super && @nWeapons==0
+  end
+  
+  def toString
+    super + "Weapons= #{@nWeapons}." 
+  end
+  
+  
+  
 end
