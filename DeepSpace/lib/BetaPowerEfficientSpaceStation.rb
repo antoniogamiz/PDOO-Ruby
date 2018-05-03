@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 require_relative 'Dice'
-require_relative 'PowerSpaceStation'
+require_relative 'PowerEfficientSpaceStation'
 
 module Deepspace
   class BetaPowerEfficientSpaceStation < PowerEfficientSpaceStation
