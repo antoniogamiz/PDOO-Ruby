@@ -15,7 +15,7 @@ class NumericDamage < Damage
   end
   
   def copy(nd)
-    NumericWeapon.new(@nWeapons, @nShields)
+    NumericWeapon.new(nd.nWeapons, nd.nShields)
   end
   
   def getUIversion
