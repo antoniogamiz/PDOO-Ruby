@@ -5,6 +5,8 @@
 require_relative 'Damage'
 require_relative 'NumericDamageToUI'
 
+module Deepspace
+
 class NumericDamage < Damage
   
   attr_reader :nWeapons
@@ -40,6 +42,5 @@ class NumericDamage < Damage
     super + "Weapons= #{@nWeapons}." 
   end
   
-  
-  
+end
 end
