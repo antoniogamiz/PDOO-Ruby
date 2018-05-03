@@ -61,7 +61,7 @@ class SpecificDamage < Damage
     super && @weapons.empty?
   end
 
-  def toString
+  def to_s
     super + "Weapons= #{@weapons}."
   end
 end

@@ -29,7 +29,7 @@ module Deepspace
         @nShields==0
     end
     
-    def toString
+    def to_s
       "Damage{" + "nShields= #{@nShields}"
     end
     

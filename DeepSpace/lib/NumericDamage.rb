@@ -38,7 +38,7 @@ class NumericDamage < Damage
     super && @nWeapons==0
   end
   
-  def toString
+  def to_s
     super + "Weapons= #{@nWeapons}." 
   end
   
