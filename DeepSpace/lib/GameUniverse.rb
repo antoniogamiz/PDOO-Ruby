@@ -148,10 +148,6 @@ class GameUniverse
         nw = @dice.initWithNWeapons
         ns = @dice.initWithNShields
         
-        puts "\n DEPURANDO 3.1 \n #{name} \n"
-        station.setLoot(Loot.new(0, nw, ns, nh, 0))
-        puts "\n DEPURANDO 3.2 \n #{name}\n"
-        
         @spaceStations.push(station)
       end
 

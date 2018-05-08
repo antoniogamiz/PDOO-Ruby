@@ -195,12 +195,9 @@ class SpaceStation
   def setLoot(loot)
       dealer=CardDealer.instance
       
+      puts "\nDentro de la llamada a setLoot #{loot.to_s}"
       if loot.nHangars > 0
-        a_=dealer.nextHangar
-        receiveHangar(a_)
-        puts "\nDEPURANDO 1.1\n"
-        puts a_.to_s
-        puts "\nDEPURANDO 1.1\n"
+        receiveHangar(dealer.nextHangar)
       end
       
       for i in (0...loot.nSupplies)
