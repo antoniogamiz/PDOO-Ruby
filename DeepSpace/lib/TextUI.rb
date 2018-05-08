@@ -63,7 +63,11 @@ class TextUI
               end
             when DS::CombatResult::STATIONWINSANDCONVERTS
               pause("\n Has GANADO el combate. Además te has TRANSFORMADO. Disfruta de tu botín.")
-          end
+              if(@controller.haveAWinner()) then
+                pause("\n\n **** **** ****  HAS GANADO LA PARTIDA  **** **** ****\n")
+                exit(0)
+              end
+        end
           begin    # Until a valid next turn
               puts showStation(@gameUI.currentStation)
               command = getCommandAfterCombat()
