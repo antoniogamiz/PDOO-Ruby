@@ -61,16 +61,18 @@ class GameUniverse
       else
         l=enemy.loot
         trans=station.setLoot(enemy.loot)
+        combatResult = CombatResult::STATIONWINS
         
         if (trans==Transformation::GETEFFICIENT) && !@haveSpaceCity
           makeStationEfficient
-        else
-          if trans==Transformation::SPACECITY
+          combatResult= CombatResult::STATIONWINSANDCONVERTS
+        elsif trans==Transformation::SPACECITY
             createSpaceCity
+            combatResult= CombatResult::STATIONWINSANDCONVERTS
           end
         end
         
-        combatResult = CombatResult::STATIONWINS
+        
       end    
     
       @gameState.next(@turns, @spaceStations.length)
