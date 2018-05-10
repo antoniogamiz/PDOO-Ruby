@@ -23,6 +23,18 @@ class SpaceStation
     @hangar=nil
     @pendingDamage=nil
   end
+  
+      
+    def self.newCopy(station)
+      supplies= SuppliesPackage.new(station.ammoPower, station.fuelUnits, station.ammoPower)
+      s= SpaceStation.new(station.name, supplies)
+      s.nMedals= station.nMedals 
+      s.setPendingDamage(station.pendingDamage)
+      s.weapons= station.weapons 
+      s.shieldBoosters= station.shieldBoosters 
+      s.receiveHangar(station.hangar)
+      s
+    end
 
   attr_reader :ammoPower, :fuelUnits, :hangar, :name, :nMedals, :pendingDamage, :shieldBoosters, :shieldPower, :weapons
 
