@@ -11,7 +11,7 @@ module Deepspace
         @FIRSTSHOTPROB=0.5
         @generator=Random.new
       
-        @EXTRAEFFICIENCYPROB=1.2
+        @EXTRAEFFICIENCYPROB=0.8
         
       end
 
