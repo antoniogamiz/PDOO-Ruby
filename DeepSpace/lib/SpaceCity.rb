@@ -19,8 +19,8 @@ module Deepspace
     #Override
     def fire
       fire_=@base.fire
-      for i in @collaborators.lenght
-        fire_+=@collaborators[i].fire
+      for s in @collaborators
+        fire_+=s.fire
       end
       fire_
     end
@@ -28,8 +28,8 @@ module Deepspace
     #Override
     def protection
       protection_=@base.protection
-      for i in @collaborators.lenght
-        protection_+=@collaborators[i].protection
+      for s in @collaborators
+        protection_+=s.protection
       end
       protection_
     end
