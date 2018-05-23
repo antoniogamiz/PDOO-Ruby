@@ -62,7 +62,7 @@ class SpecificDamage < Damage
   end
 
   def to_s
-    super + "Weapons= #{@weapons}."
+    super + "Weapons= #{@weapons.join(", "}."
   end
 end
 
