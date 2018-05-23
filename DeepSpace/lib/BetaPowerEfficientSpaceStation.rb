@@ -4,6 +4,7 @@
 
 require_relative 'Dice'
 require_relative 'PowerEfficientSpaceStation'
+require_relative 'BetaPowerEfficientSpaceStationToUI'
 
 module Deepspace
   class BetaPowerEfficientSpaceStation < PowerEfficientSpaceStation
@@ -22,6 +23,11 @@ module Deepspace
       else
         super.fire
       end
+    end
+    
+    #Override
+    def getUIversion
+      BetaPowerEfficientStationToUI.new(self)
     end
   end
 end
