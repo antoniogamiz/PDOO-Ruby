@@ -80,17 +80,24 @@ class GameUniverse
       combatResult
   end
  
-  def makeStationEfficient
-    @currentStation= @dice.extraEfficiency ? PowerEfficientSpaceStation.new(currentStation) : BetaPowerEfficientSpaceStation(currentStation)
-  end
-  
   def createSpaceCity
-    if !@haveSpaceCity
-      @currentSpaceStation=SpaceCity.new(@currentStation, spaceStations)
-      @haveSpaceCity=true
+    if (!@haveSpaceCity)
+      aux = Array.new(@spaceStations)
+      aux.delete_at(@currentStationIndex)
+      @currentStation = SpaceCity.new(@currentStation, aux)
+      @spaceStations[@currentStationIndex] = @currentStation
     end
   end
   
+  def makeStationEfficient
+    if(@dice.extraEfficiency)
+      @currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
+    else
+      @currentStation = PowerEfficientSpaceStation.new(@currentStation)
+    end
+    @spaceStations[@currentStationIndex] = @currentStation
+  end
+    
   def combat
       state = @gameState.state
       if state == GameState::BEFORECOMBAT || state == GameState::INIT
@@ -150,6 +157,8 @@ class GameUniverse
         nw = @dice.initWithNWeapons
         ns = @dice.initWithNShields
         
+        l = Loot.new(0, nw, ns, nh, 0)
+        station.setLoot(l)
         @spaceStations.push(station)
       end
 
@@ -194,6 +203,11 @@ class GameUniverse
       false
     end  
   end
+
+  def to_s
+    return "\nIndex: #{@currentStationIndex} + Turns: #{@turns} + SpaceStations: #{@spaceStations} + CurrenStation: #{@currentStation} + CurrentEnemy: #{@currentEnemy}"
+  end
+
 
 end
 end
