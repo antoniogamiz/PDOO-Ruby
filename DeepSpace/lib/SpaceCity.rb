@@ -4,6 +4,7 @@
 
 require_relative 'SpaceStation'
 require_relative 'Transformation'
+require_relative 'SpaceCityToUI'
 
 module Deepspace
   class SpaceCity < SpaceStation
@@ -38,6 +39,11 @@ module Deepspace
     def setLoot(l)
       super
       Transformation::NOTRANSFORM
+    end
+    
+    #Override
+    def getUIversion
+      SpaceCityToUI(self)
     end
     
   end
