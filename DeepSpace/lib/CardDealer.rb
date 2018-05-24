@@ -61,7 +61,7 @@ class CardDealer
         createEnemies()      
     end
     
-    def createSuppliesPackages() 
+    def createSuppliesPackages()
         @suppliesPackages.add(SuppliesPackage.new(1,10,1))
         @suppliesPackages.add(SuppliesPackage.new(1,10,1))
         @suppliesPackages.add(SuppliesPackage.new(1,10,1))

@@ -73,7 +73,7 @@ class GameUniverse
         end
         
         
-      end    
+          
     
       @gameState.next(@turns, @spaceStations.length)
       
@@ -152,7 +152,7 @@ class GameUniverse
 
       for name in names
         supplies = dealer.nextSuppliesPackage
-        station = SpaceStation.new(name, supplies)
+        station = SpaceStation.newStation(name, supplies)
         nh = @dice.initWithNHangars
         nw = @dice.initWithNWeapons
         ns = @dice.initWithNShields

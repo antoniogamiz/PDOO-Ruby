@@ -11,8 +11,8 @@ module Deepspace
     
     @@EXTRAEFFICIENCY=1.2
     
-    def initialize(station)
-      super(station)
+    def initialize(s)
+      super(s)
       @dice=Dice.new
     end
     
@@ -27,7 +27,7 @@ module Deepspace
     
     #Override
     def getUIversion
-      BetaPowerEfficientStationToUI.new(self)
+      BetaPowerEfficientSpaceStationToUI.new(self)
     end
   end
 end

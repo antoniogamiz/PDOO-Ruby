@@ -12,16 +12,20 @@ class SpaceStation
   @@MAXFUEL=100
   @@SHIELDLOSSPERUNITSHOT=0.1
 
-  def initialize(n, supplies)
-    @name=n
-    @ammoPower=supplies.ammoPower
-    @fuelUnits=supplies.fuelUnits
-    @shieldPower=supplies.shieldPower
-    @nMedals=0
-    @weapons=Array.new()
-    @shieldBoosters=Array.new()
-    @hangar=nil
-    @pendingDamage=nil
+  def initialize(n, ap,fu,sp,h=nil,w=[],sb=[],pd=nil,m=0)
+    @name = n
+    @ammoPower = ap
+    @fuelUnits = fu
+    @shieldPower = sp
+    @hangar = h
+    @weapons = w
+    @shieldBoosters = sb
+    @pendingDamage = pd
+    @nMedals = m
+  end
+  
+  def self.newStation(n, s)
+      new(n,s.ammoPower,s.fuelUnits,s.shieldPower)
   end
   
       
@@ -225,8 +229,8 @@ class SpaceStation
       
       @nMedals+=loot.nMedals
       
-      if loot.efficient then return Transform::GETEFFCIENT end
-      if loot.spaceCity then return Transform::SPACECITY end
+      if loot.efficient then return Transformation::GETEFFICIENT end
+      if loot.spaceCity then return Transformation::SPACECITY end
       return Transformation::NOTRANSFORM
   end
 

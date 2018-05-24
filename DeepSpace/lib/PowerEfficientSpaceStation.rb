@@ -10,8 +10,8 @@ module Deepspace
   class PowerEfficientSpaceStation < SpaceStation
     @@EFFICIENCYFACTOR=1.1
     
-    def initialize(station)
-      super(station)
+    def initialize(s)
+      super(s.name, s.ammoPower, s.fuelUnits, s.shieldPower, s.hangar, s.weapons,s.shieldBoosters, s.pendingDamage,s.nMedals)
     end
     
     #Override

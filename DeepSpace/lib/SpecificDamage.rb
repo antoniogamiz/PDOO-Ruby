@@ -17,7 +17,7 @@ class SpecificDamage < Damage
   end
 
   def copy(sp)
-    self.new(sp.weapons, sp.nShields)
+    new(sp.weapons, sp.nShields)
   end
 
   def getUIversion
@@ -38,7 +38,7 @@ class SpecificDamage < Damage
           end
         end
       }
-      new(weapons, adjustShieldBoosters(s))
+      SpecificDamage.new(weapons, adjustShieldBoosters(s))
   end
 
   def arrayContainsType(w, t)
@@ -62,7 +62,7 @@ class SpecificDamage < Damage
   end
 
   def to_s
-    super + "Weapons= #{@weapons.join(", "}."
+    super + "Weapons= #{@weapons.join(", ")}."
   end
 end
 

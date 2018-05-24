@@ -51,7 +51,7 @@ module Deepspace
       end
       
       def extraEfficiency
-          @generator.rand >= EXTRAEFFICIENCYPROB ? true:false 
+        @generator.rand >= EXTRAEFFICIENCYPROB ? true:false 
       end
 
     end

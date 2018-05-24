@@ -25,7 +25,7 @@ class NumericDamage < Damage
   end
   
   def adjust(w, s)
-    self.new([@nWeapons, w.length].min, adjustShieldBoosters(s))
+    NumericDamage.new([@nWeapons, w.length].min, adjustShieldBoosters(s))
   end
   
   def discardWeapon(w)
